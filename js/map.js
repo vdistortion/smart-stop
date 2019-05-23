@@ -65,8 +65,8 @@ function drawingPaths(value) {
       }).then(routes => {
           ymapsRoutesString = routes;
           $('#list').html(renderRoutes(routes));
-          $.get('./templates/list.tpl', tpl => {
-            let compiled = _.template(tpl);
+          axios.get('./templates/list.tpl').then(response => {
+            let compiled = _.template(response.data);
             document.getElementById('superlist').innerHTML = compiled(superlist);
             try {
               M.AutoInit();
@@ -121,4 +121,53 @@ $(document).on('click', '.js-ymaps-route', e => {
   let id = el.attr('data-id');
   ymapsRoutesString.setActiveRoute(ymapsRoutes[Number(id)]);
   myMap.geoObjects.removeAll().add(ymapsRoutesString);
+});
+
+
+function on(event, fn, selector = false, delegate = false) {
+  let collection = document.querySelectorAll(selector);
+  for (let i = 0, len = collection.length; i < len; i++) {
+    collection[i].addEventListener(event, e => {
+      let el = e.currentTarget;
+      console.log(el);
+    });
+  }
+}
+
+var eventListener = (function(root, factory){
+  if (typeof define === 'function' && define.amd) {
+    define(factory);
+  } else if (typeof exports === 'object') {
+    module.exports = factory();
+  } else {
+    root.eventListener = factory();
+  }
+}(this, function () {
+  function wrap(standard, fallback) {
+    return function (el, evtName, listener, useCapture) {
+      if (el[standard]) {
+        el[standard](evtName, listener, useCapture);
+      } else if (el[fallback]) {
+        el[fallback]('on' + evtName, listener);
+      }
+    }
+  }
+
+  return {
+    add: wrap('addEventListener', 'attachEvent'),
+    remove: wrap('removeEventListener', 'detachEvent')
+  };
+}));
+  console.log(eventListener);
+
+
+function onLoad(evt) {
+  console.log(evt);
+};
+eventListener.add(window, 'load', onLoad);
+eventListener.remove(window, 'load', onLoad);
+
+var el = document.getElementById('output');
+eventListener.add(el, 'click', function (evt) {
+  console.log(evt);
 });

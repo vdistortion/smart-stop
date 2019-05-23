@@ -22,9 +22,9 @@ function getAPI() {
     point: ''
   };
 
-  $.get('./api/', {ID: Number(id)}, response => {
+  axios.get('./api/', {params: {ID: Number(id)}}).then(response => {
 
-    _.each(response.split('\n'), item => {
+    _.each(response.data.split('\n'), item => {
       if (item) {
         let key = item.split('=')[0];
         let val = item.split('=')[1];
@@ -44,8 +44,8 @@ function getAPI() {
     });
 
     if (template === null) {
-      $.get('./templates/api.tpl', response => {
-        template = response;
+      axios.get('./templates/api.tpl').then(response => {
+        template = response.data;
         render(template, state);
       });
     } else {

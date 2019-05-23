@@ -72,13 +72,14 @@
     <div class="container simple-keyboard-wrapper">
       <div class="row" style="margin: 0;">
         <div class="col s12">
-          <div class="simple-keyboard"></div>
+          <div class="simple-keyboard b-hide"></div>
         </div>
       </div>
     </div>
     <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/index.min.js"></script>
     <script src="./js/api.js?v=<?=rand()?>"></script>
