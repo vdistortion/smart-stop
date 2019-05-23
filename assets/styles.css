@@ -1,0 +1,40 @@
+/*html,
+body {
+  padding: 0;
+  margin: 0;
+}
+#wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+}
+#viewContainer {
+  margin: 8px;
+  flex-grow: 1;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+#map {
+  flex-grow: 1;
+}
+*/
+.mapping {
+  pointer-events: none;
+}
+#map {
+  width: 700px;
+  height: 500px;
+}
+.simple-keyboard-wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+.simple-keyboard.hg-theme-default {
+  display: none;
+  background-color: beige;
+}
