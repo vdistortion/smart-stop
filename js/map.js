@@ -1,30 +1,46 @@
 let myMap, ymapsRoutesString;
+let fromCoords = [55.160267, 61.396717];
 let ymapsRoutes = [];
+let suggests = [];
 let superlist = {
   temp: []
 }
 
 ymaps.ready(() => {
 
-  let fromCoords = [55.160940, 61.411679];
-
   myMap = new ymaps.Map('map', {
       center: fromCoords,
-      zoom: 12,
+      zoom: 15,
       controls: []
   });
 
   let suggestView = new ymaps.SuggestView('suggest', {
     provider: {
-      suggest: request => ymaps.suggest("Челябинск," + request)
+      suggest: request => {
+        let suggest = ymaps.suggest("Челябинск," + request);
+        suggest.then(items => {
+          suggests = items;
+        });
+        return suggest;
+      }
     }
   });
 
+  $(document).on('click', '.js-search-button', e => {
+    if (suggests.length) drawingPaths(suggests[0].value);
+  });
+
   suggestView.events.add('select', e => {
+    drawingPaths(e.get('item').value);
+  });
+
+});
+
+function drawingPaths(value) {
 
     $('.simple-keyboard').hide();
 
-    ymaps.geocode(e.get('item').value).then(res => {
+    ymaps.geocode(value).then(res => {
 
       let newPath = res.geoObjects.get(0).properties.get('boundedBy');
       let coord1 = (newPath[1][0] - newPath[0][0]) / 2 + newPath[0][0];
@@ -49,20 +65,20 @@ ymaps.ready(() => {
       }).then(routes => {
           ymapsRoutesString = routes;
           $('#list').html(renderRoutes(routes));
-          console.log(superlist);
-          $.get('./list.tpl', tpl => {
+          $.get('./templates/list.tpl', tpl => {
             let compiled = _.template(tpl);
             document.getElementById('superlist').innerHTML = compiled(superlist);
-            M.AutoInit();
+            try {
+              M.AutoInit();
+            } catch (e) {}
           });
         }, error => {
           alert('Возникла ошибка: ' + error.message);
       });
 
     });
-  });
 
-});
+}
 
 function renderRoutes(routes) {
   ymapsRoutes = [];

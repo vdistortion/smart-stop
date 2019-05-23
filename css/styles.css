@@ -24,7 +24,6 @@ body {
   pointer-events: none;
 }
 #map {
-  width: 700px;
   height: 500px;
 }
 .simple-keyboard-wrapper {

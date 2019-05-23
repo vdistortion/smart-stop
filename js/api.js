@@ -2,21 +2,13 @@ let template = null;
 
 getAPI();
 
-let interval = setInterval(() => {
+setInterval(() => {
   getAPI();
 }, 30000);
 
-$(document).on('click', '#update', e => {
-  getAPI();
-  clearInterval(interval);
-  interval = setInterval(() => {
-    getAPI();
-  }, 30000);
-});
-
 function getAPI() {
 
-  let id = document.getElementById('wrapper').getAttribute('data-id');
+  let id = document.getElementById('output').getAttribute('data-id');
   let date = new Date();
   let hours = twoNumber(date.getHours());
   let minutes = twoNumber(date.getMinutes());
@@ -52,7 +44,7 @@ function getAPI() {
     });
 
     if (template === null) {
-      $.get('./template.tpl', response => {
+      $.get('./templates/api.tpl', response => {
         template = response;
         render(template, state);
       });
