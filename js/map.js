@@ -10,7 +10,7 @@ ymaps.ready(() => {
 
   myMap = new ymaps.Map('map', {
       center: fromCoords,
-      zoom: 15,
+      zoom: 17,
       controls: []
   });
 
@@ -61,8 +61,10 @@ function drawingPaths(value) {
 
       ymaps.route([fromCoords, toCoords], {
         routingMode: 'masstransit',
+        mapStateAutoApply: true,
         multiRoute: true
       }).then(routes => {
+          document.getElementById('superlist').innerHTML = '';
           ymapsRoutesString = routes;
           $('#list').html(renderRoutes(routes));
           axios.get('./templates/list.tpl').then(response => {
@@ -71,6 +73,10 @@ function drawingPaths(value) {
             try {
               M.AutoInit();
             } catch (e) {}
+            setTimeout(() => {
+              myMap.setBounds(myMap.geoObjects.getBounds());
+              myMap.container.fitToViewport();
+            }, 0);
           });
         }, error => {
           alert('Возникла ошибка: ' + error.message);
@@ -121,53 +127,4 @@ $(document).on('click', '.js-ymaps-route', e => {
   let id = el.attr('data-id');
   ymapsRoutesString.setActiveRoute(ymapsRoutes[Number(id)]);
   myMap.geoObjects.removeAll().add(ymapsRoutesString);
-});
-
-
-function on(event, fn, selector = false, delegate = false) {
-  let collection = document.querySelectorAll(selector);
-  for (let i = 0, len = collection.length; i < len; i++) {
-    collection[i].addEventListener(event, e => {
-      let el = e.currentTarget;
-      console.log(el);
-    });
-  }
-}
-
-var eventListener = (function(root, factory){
-  if (typeof define === 'function' && define.amd) {
-    define(factory);
-  } else if (typeof exports === 'object') {
-    module.exports = factory();
-  } else {
-    root.eventListener = factory();
-  }
-}(this, function () {
-  function wrap(standard, fallback) {
-    return function (el, evtName, listener, useCapture) {
-      if (el[standard]) {
-        el[standard](evtName, listener, useCapture);
-      } else if (el[fallback]) {
-        el[fallback]('on' + evtName, listener);
-      }
-    }
-  }
-
-  return {
-    add: wrap('addEventListener', 'attachEvent'),
-    remove: wrap('removeEventListener', 'detachEvent')
-  };
-}));
-  console.log(eventListener);
-
-
-function onLoad(evt) {
-  console.log(evt);
-};
-eventListener.add(window, 'load', onLoad);
-eventListener.remove(window, 'load', onLoad);
-
-var el = document.getElementById('output');
-eventListener.add(el, 'click', function (evt) {
-  console.log(evt);
 });

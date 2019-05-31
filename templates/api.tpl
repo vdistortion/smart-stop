@@ -1,5 +1,4 @@
-<h5>Остановка <%= point %></h5>
-<p><%= date %> - <%= time %> (обновлено: <%= update %>)</p>
+<h5><%= hour %><span class="blink">:</span><%= minute %></h5>
 <ul class="collection">
   <% _.each(list, item => { %>
     <li class="collection-item">
