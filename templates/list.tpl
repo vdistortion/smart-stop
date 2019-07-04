@@ -14,7 +14,7 @@
     <div id="test<%= key %>">
       <ul class="collection">
         <% _.each(item.list, itemlist => { %>
-          <li class="collection-item">
+          <li class="collection-item" style="line-height: 1.2;">
             <%= itemlist %>
           </li>
         <% }); %>

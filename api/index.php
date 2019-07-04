@@ -62,6 +62,17 @@ if (isset($_GET['MR']) || $_GET['DEBUG'] == 'Y') {
         }
     }
 
+    if (!array_key_exists('bus', $newRoutes)) {
+        $newRoutes['bus'] = Array();
+    }
+
+    if (array_key_exists('seasonalbus', $newRoutes)) {
+        foreach ($newRoutes['seasonalbus'] as $route) {
+            $newRoutes['bus'][] = $route;
+        }
+        unset($newRoutes['seasonalbus']);
+    }
+
     $result = Array(
         "routes" => $newRoutes,
         "stop" => $newStops

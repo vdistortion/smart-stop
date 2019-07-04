@@ -4,7 +4,7 @@
     <title>Маршрут от точки на карте</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, user-scalable=no"">
     <link rel="icon" href="https://www.is74.ru/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -14,7 +14,6 @@
   <body>
     <?/*
       data-id - id остановки
-      default - 3510001
       3510001 - Детский мир
       3510002 - Детский мир
       3510003 - Площадь Революции
@@ -23,10 +22,11 @@
     */?>
     <? $reset = ($_GET["RESET"] === "Y") ? 'data-reset="y"' : ''; ?>
     <div class="wrapper-flex">
+      <!-- <a href="http://zvo.arb.szdl.ru/ymaps/?RESET=Y">RESET</a> -->
       <div class="wrapper-flex__item text-modifier">
-        <div class="row">
+        <div class="row" style="margin: 0;">
           <div class="col s12">
-            <div id="output" data-id="3510005" data-marsruty="176">
+            <div id="output" data-id="3510003" data-marsruty="199">
               <div class="progress">
                 <div class="indeterminate"></div>
               </div>
@@ -41,17 +41,12 @@
       </div>
       <div class="wrapper-flex__item text-modifier">
         <div class="row">
-          <div class="col s11">
-            <div class="input-field">
-              <input id="suggest" type="text">
-              <label for="suggest">Введите точку назначения и мы поможем найти маршрут</label>
-            </div>
-          </div>
-          <div class="col s1">
-            <div class="input-field">
-              <a class="btn-floating btn-large waves-effect waves-light js-search-button">
+          <div class="col s12">
+            <div class="search-container">
+              <input id="suggest" class="browser-default" type="text" placeholder="Как проехать до">
+              <button class="js-search-button" type="submit">
                 <i class="material-icons">search</i>
-              </a>
+              </button>
             </div>
           </div>
           <div class="col s12">

@@ -1,6 +1,7 @@
 let template = null;
 let templateAll = null;
 let marsruty = null;
+let setCenter = true;
 
 getAll();
 getAPI();
@@ -59,6 +60,10 @@ function getAllCallback(response) {
         preset: 'islands#blackStretchyIcon',
         draggable: false
       }));
+      if (setCenter) {
+        myMap.setCenter(response.data.stop.coords);
+        setCenter = false;
+      }
     }, 1000);
 
     if (templateAll === null) {
@@ -150,7 +155,7 @@ function parseRoutes(str, state) {
   state.list.push({
     type: list[key.slice(0, 2)],
     name: key.slice(2, key.length),
-    time: val.slice(0, val.length - 1) + ' мин.'
+    time: val.slice(0, val.length - 1)
   });
 }
 
@@ -170,4 +175,10 @@ if ($('[data-reset="y"]').length) {
 
 document.addEventListener('contextmenu', e => e.preventDefault());
 
-document.firstElementChild.style.zoom = "reset";
+// window.addEventListener("touchstart", touchHandler, false);
+
+// function touchHandler(e){
+//     if (e.touches.length > 1) {
+//         e.preventDefault();
+//     }
+// }
