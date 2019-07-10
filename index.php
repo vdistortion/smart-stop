@@ -4,12 +4,15 @@
     <title>Маршрут от точки на карте</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, user-scalable=no"">
-    <link rel="icon" href="https://www.is74.ru/favicon.ico" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <link rel="icon" href="https://www.is74.ru/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap&subset=cyrillic">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/css/index.css">
     <link rel="stylesheet" href="./css/styles.css?v=<?=rand()?>">
+    <link rel="stylesheet" href="./css/new.css?v=<?=rand()?>">
   </head>
   <body>
     <?/*
@@ -21,45 +24,39 @@
       3510005 - Публичная библиотека
     */?>
     <? $reset = ($_GET["RESET"] === "Y") ? 'data-reset="y"' : ''; ?>
-    <div class="wrapper-flex">
+
+    <main class="is-container">
       <!-- <a href="http://zvo.arb.szdl.ru/ymaps/?RESET=Y">RESET</a> -->
-      <div class="wrapper-flex__item text-modifier">
-        <div class="row" style="margin: 0;">
-          <div class="col s12">
-            <div id="output" data-id="3510003" data-marsruty="199">
-              <div class="progress">
-                <div class="indeterminate"></div>
-              </div>
-            </div>
-            <div id="output-all" <?=$reset?>>
-              <div class="progress">
-                <div class="indeterminate"></div>
-              </div>
-            </div>
+      <div id="output" data-id="3510003" data-marsruty="199" <?=$reset?> hidden>
+        <div class="progress">
+          <div class="indeterminate"></div>
+        </div>
+      </div>
+      <div id="output-all">
+        <div class="progress">
+          <div class="indeterminate"></div>
+        </div>
+      </div>
+      <div class="search">
+        <div class="wrapper">
+          <div class="search__row">
+            <input id="suggest" class="search__input browser-default" type="text" placeholder="Введите название остановки">
+            <button class="search__button js-search-button" type="submit">Найти</button>
           </div>
         </div>
       </div>
-      <div class="wrapper-flex__item text-modifier">
-        <div class="row">
-          <div class="col s12">
-            <div class="search-container">
-              <input id="suggest" class="browser-default" type="text" placeholder="Как проехать до">
-              <button class="js-search-button" type="submit">
-                <i class="material-icons">search</i>
-              </button>
-            </div>
-          </div>
-          <div class="col s12">
-            <div id="superlist"></div>
-          </div>
+      <div class="result">
+        <div class="wrapper">
+          <div id="superlist"></div>
         </div>
       </div>
-      <div class="wrapper-flex__item">
-        <div class="map-wrap">
+      <div class="ymaps">
+        <div class="ymaps__wrap">
           <div id="map"></div>
         </div>
       </div>
-    </div>
+    </main>
+
     <div class="simple-keyboard b-hide"></div>
     <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

@@ -28,10 +28,16 @@ ymaps.ready(() => {
 
   $(document).on('click', '.js-search-button', e => {
     if (suggests.length) drawingPaths(suggests[0].value);
+    emptySearchTimeout();
+  });
+
+  $(document).on('input', '#suggest', e => {
+    emptySearchTimeout();
   });
 
   suggestView.events.add('select', e => {
     drawingPaths(e.get('item').value);
+    emptySearchTimeout();
   });
 
 });
@@ -127,4 +133,24 @@ $(document).on('click', '.js-ymaps-route', e => {
   let id = el.attr('data-id');
   ymapsRoutesString.setActiveRoute(ymapsRoutes[Number(id)]);
   myMap.geoObjects.removeAll().add(ymapsRoutesString);
+  emptySearchTimeout();
 });
+
+// Перезагрузка при бездействии
+let reloadPageInterval;
+emptySearch();
+
+function emptySearch() {
+  const minute = 1000 * 60; // одна минута
+  const count = minute * 1; // количество минут
+  reloadPageInterval = setInterval(() => {
+    $('#suggest').val('');
+    $('#superlist').empty();
+    myMap.geoObjects.removeAll();
+  }, count);
+}
+
+function emptySearchTimeout() {
+  clearInterval(reloadPageInterval);
+  emptySearch();
+}

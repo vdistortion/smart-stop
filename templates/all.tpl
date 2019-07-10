@@ -1,15 +1,33 @@
-<h5><%= time.hour %><span class="blink">:</span><%= time.minute %></h5>
-<% _.each(routes, (r, key) => { %>
-  <h6 class="urban"><img src="./i/<%= key %>.svg" alt="<%= assoc[key] %>"><%= assoc[key] %></h6>
-  <ul class="collection">
-    <% _.each(r, route => { %>
-      <li class="collection-item">
-        <div class="flex-info">
-          <div class="flex-info__item time coral"><% if (route.time) { %><%= route.time %> мин.<!-- <span>мин.</span> --><% } %></div>
-          <div class="flex-info__item name"><b>№<%= route.name %></b></div>
-          <div class="flex-info__item route"><%= route.route %></div>
-        </div>
-      </li>
-    <% }); %>
-  </ul>
-<% }); %>
+<header class="header">
+  <h1><%= time.hour %><span class="blink">:</span><%= time.minute %></h1>
+</header>
+<div class="transport">
+  <div class="wrapper">
+    <table>
+      <tbody>
+        <% _.each(routes, (r, key) => { %>
+          <tr>
+            <th colspan="3">
+              <h2 class="transport__title <%= key %>"><%= assoc[key] %></h2>
+            </th>
+          </tr>
+          <% _.each(r, route => { %>
+            <tr>
+              <% if (api) { %>
+                <td>
+                  <span class="transport__info time"><% if (route.time) { %><%= route.time %> мин<% } %></span>
+                </td>
+              <% } %>
+              <td>
+                <span class="transport__info name">№<%= route.name %></span>
+              </td>
+              <td>
+                <span class="transport__info route"><%= route.route %></span>
+              </td>
+            </tr>
+          <% }); %>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
+</div>

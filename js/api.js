@@ -32,48 +32,49 @@ function getAll() {
 }
 
 function getAllCallback(response) {
-    let output = document.getElementById('output-all');
-    let hour = new Date().getHours();
-    let minute = new Date().getMinutes();
-    response.data.assoc = {
-      tram: "Трамваи",
-      trol: "Троллейбусы",
-      bus: "Автобусы",
-      seasonalbus: "Садовые маршруты"
-    };
-    response.data.time = {
-      hour: ('0' + hour).slice(-2),
-      minute: ('0' + minute).slice(-2)
-    };
+  if (!_.has(response.data, "api")) response.data.api = false;
+  let output = document.getElementById('output-all');
+  let hour = new Date().getHours();
+  let minute = new Date().getMinutes();
+  response.data.assoc = {
+    tram: "Трамваи",
+    trol: "Троллейбусы",
+    bus: "Автобусы",
+    seasonalbus: "Садовые маршруты"
+  };
+  response.data.time = {
+    hour: ('0' + hour).slice(-2),
+    minute: ('0' + minute).slice(-2)
+  };
 
-    setTimeout(() => {
-      myMap.geoObjects.add(new ymaps.GeoObject({
-        // Описание геометрии.
-        geometry: {
-          type: "Point",
-          coordinates: response.data.stop.coords
-        },
-        properties: {
-          iconContent: response.data.stop.name
-        }
-      }, {
-        preset: 'islands#blackStretchyIcon',
-        draggable: false
-      }));
-      if (setCenter) {
-        myMap.setCenter(response.data.stop.coords);
-        setCenter = false;
+  setTimeout(() => {
+    myMap.geoObjects.add(new ymaps.GeoObject({
+      // Описание геометрии.
+      geometry: {
+        type: "Point",
+        coordinates: response.data.stop.coords
+      },
+      properties: {
+        iconContent: response.data.stop.name
       }
-    }, 1000);
-
-    if (templateAll === null) {
-      axios.get('./templates/all.tpl').then(tpl => {
-        templateAll = tpl.data;
-        output.innerHTML = render(templateAll, response.data);
-      });
-    } else {
-      output.innerHTML = render(templateAll, response.data);
+    }, {
+      preset: 'islands#blackStretchyIcon',
+      draggable: false
+    }));
+    if (setCenter) {
+      myMap.setCenter(response.data.stop.coords);
+      setCenter = false;
     }
+  }, 2000);
+
+  if (templateAll === null) {
+    axios.get('./templates/all.tpl').then(tpl => {
+      templateAll = tpl.data;
+      output.innerHTML = render(templateAll, response.data);
+    });
+  } else {
+    output.innerHTML = render(templateAll, response.data);
+  }
 }
 
 function getAPI() {
@@ -112,15 +113,18 @@ function getAPI() {
 
     if (db) {
       db = JSON.parse(db);
+      let flag = false;
       _.eachRight(state.list, active => {
         _.each(db.data.routes[active.type], (list, i, array) => {
           if (list.name === active.name) {
             list.time = active.time;
+            if (active.time) flag = true;
             let item = array.splice(i, 1);
             array.unshift(item[0]);
           }
         });
       });
+      db.data.api = flag;
       getAllCallback(db);
       output.innerHTML = '';
     } else {

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+  <head>
+    <title>Инфоматы</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap&subset=cyrillic">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main class="container">
+      <header class="header">
+        <h1>12:12</h1>
+      </header>
+      <div class="transport">
+        <div class="wrapper">
+          <table>
+            <tbody>
+              <tr>
+                <th colspan="3">
+                  <h2 class="transport__title bus">автобусы</h2>
+                </th>
+              </tr>
+              <tr>
+                <td>
+                  <span class="transport__info time">5 мин</span>
+                </td>
+                <td>
+                  <span class="transport__info name">№4</span>
+                </td>
+                <td>
+                  <span class="transport__info route">ул. мамина --- юургу</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="transport__info time">10 мин</span>
+                </td>
+                <td>
+                  <span class="transport__info name">№2</span>
+                </td>
+                <td>
+                  <span class="transport__info route">юургу --- мехколонна</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="transport__info time">25 мин</span>
+                </td>
+                <td>
+                  <span class="transport__info name">№14</span>
+                </td>
+                <td>
+                  <span class="transport__info route">ж/д вокзал --- пос. новосинеглазово</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="transport__info time">35 мин</span>
+                </td>
+                <td>
+                  <span class="transport__info name">№18</span>
+                </td>
+                <td>
+                  <span class="transport__info route">юургу --- пос. старокамышинск</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="transport__info time">45 мин</span>
+                </td>
+                <td>
+                  <span class="transport__info name">№83</span>
+                </td>
+                <td>
+                  <span class="transport__info route">юургу --- пос. старокамышинск</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="transport__info time">55 мин</span>
+                </td>
+                <td>
+                  <span class="transport__info name">№90С</span>
+                </td>
+                <td>
+                  <span class="transport__info route">ж/д вокзал --- сад "кристалл"</span>
+                </td>
+              </tr>
+              <tr>
+                <th colspan="3">
+                  <h2 class="transport__title trol">троллейбусы</h2>
+                </th>
+              </tr>
+              <tr>
+                <td>
+                  <span class="transport__info time">2 мин</span>
+                </td>
+                <td>
+                  <span class="transport__info name">№8</span>
+                </td>
+                <td>
+                  <span class="transport__info route">пкио им. гагарина --- чкпз</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="transport__info time">3 мин</span>
+                </td>
+                <td>
+                  <span class="transport__info name">№10</span>
+                </td>
+                <td>
+                  <span class="transport__info route">ул. молдавская --- солнечный берег</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="transport__info time">7 мин</span>
+                </td>
+                <td>
+                  <span class="transport__info name">№26</span>
+                </td>
+                <td>
+                  <span class="transport__info route">ул. молдавская --- пос. первоозерный</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="transport__info time">12 мин</span>
+                </td>
+                <td>
+                  <span class="transport__info name">№19</span>
+                </td>
+                <td>
+                  <span class="transport__info route">пкио им. гагарина --- тэц №3</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="transport__info time">20 мин</span>
+                </td>
+                <td>
+                  <span class="transport__info name">№17</span>
+                </td>
+                <td>
+                  <span class="transport__info route">ул. молдавская --- ж/д вокзал</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="search">
+        <div class="wrapper">
+          <div class="search__row">
+            <input class="search__input" type="text" placeholder="Введите название остановки">
+            <button class="search__button">найти</button>
+          </div>
+        </div>
+      </div>
+      <div id="map"></div>
+    </main>
+  </body>
+</html>

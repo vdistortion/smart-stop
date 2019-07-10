@@ -20,7 +20,7 @@ let keyboard = new Keyboard({
 });
 
 document.querySelector("input").addEventListener("input", event => {
-  keyboard.setInput(event.target.value);
+  // keyboard.setInput(event.target.value);
 });
 
 function onChange(input) {
@@ -41,7 +41,7 @@ function handleBksp() {
 }
 
 $('#suggest').on('focus', e => {
-  $('.simple-keyboard').show();
+  // $('.simple-keyboard').show();
 });
 
 $(document).mouseup(e => { // событие клика по веб-документу
