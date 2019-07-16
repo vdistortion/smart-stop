@@ -1,6 +1,6 @@
 <?php
 
-if (isset($_GET['MR']) || $_GET['DEBUG'] == 'Y') {
+if (isset($_GET['MR']) || (isset($_GET['DEBUG']) && $_GET['DEBUG'] == 'Y')) {
 
     $marsruty = $_GET['MR'] ? : 182;
     $stops = file_get_contents('./marsruty/stops.txt');

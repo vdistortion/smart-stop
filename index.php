@@ -23,7 +23,7 @@
       3510004 - Площадь Революции
       3510005 - Публичная библиотека
     */?>
-    <? $reset = ($_GET["RESET"] === "Y") ? 'data-reset="y"' : ''; ?>
+    <?php $reset = isset($_GET["RESET"]) && $_GET["RESET"] === "Y" ? 'data-reset="y"' : ''; ?>
 
     <main class="is-container">
       <!-- <a href="http://zvo.arb.szdl.ru/ymaps/?RESET=Y">RESET</a> -->
