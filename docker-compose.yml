@@ -11,7 +11,7 @@ services:
       - NGINX_SITE_SERVER_NAME=infomat
       - NGINX_SITE_DOCUMENT_ROOT=/var/www
     ports:
-      - 8101:80
+      - 127.0.0.1:8101:80
     restart: always
 
   php-fpm:
