@@ -1,0 +1,13 @@
+mixin button-route(number, type)
+  button.btn-route(class="btn-route--"+type) №#{number}
+
+mixin button-route-short(number, type)
+  button.btn-route.btn-route--short(class="btn-route--"+type) №#{number}
+
+mixin button-search(link, text = '')
+  a.btn-search(href=link)
+    button.btn-search__button #{text}
+
+mixin button-back(link)
+  a.btn-back(href=link)
+    button.btn-back__button

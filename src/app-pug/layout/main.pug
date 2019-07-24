@@ -1,0 +1,41 @@
+include ../includeMixins
+block variables
+
+<?php $chelgortrans = (isset($_GET['CHELGORTRANS'])) ? $_GET['CHELGORTRANS'] : 3510004; ?>
+<?php $static = (isset($_GET['STATIC'])) ? $_GET['STATIC'] : 199; ?>
+<?php $id = (isset($_GET['id'])) ? $_GET['id'] : ''; ?>
+<?php require_once("../_template.path.php"); ?>
+
+doctype html
+html(lang="ru-RU")
+  head
+    title #{title}
+    meta(charset="utf-8")
+    meta(http-equiv='X-UA-Compatible' content="IE=edge")
+    meta(name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,user-scalable=no")
+    meta(name="format-detection" content="telephone=no")
+    meta(name="description" content="")
+    meta(name="keywords" content="")
+    meta(name="author" content="Baryonyx")
+    meta(name="copyright" content!='<?=date("Y")?>')
+    //- Иконка сайта
+    link(rel="icon" href!="<?=SITE_TEMPLATE_PATH?>/favicon.ico" type="image/x-icon")
+    link(rel="shortcut icon" href!="<?=SITE_TEMPLATE_PATH?>/favicon.ico" type="image/x-icon")
+    //- Стили
+    link(rel="stylesheet" href!="<?=SITE_TEMPLATE_PATH?>/vendor.min.css?v=<?=rand()?>")
+    link(rel="stylesheet" href!="<?=SITE_TEMPLATE_PATH?>/template_styles.css?v=<?=rand()?>")
+  body(
+    data-api-chelgortrans!="<?=$chelgortrans?>",
+    data-api-static!="<?=$static?>",
+    data-route-id!="<?=$id?>",
+  )
+    <?php require_once("../images/svg/symbols.svg"); ?>
+    main.l-page
+      +header()
+      block content
+      +debug()
+    +templates()
+    script(src="https://api-maps.yandex.ru/2.1/?apikey=042632bb-9b8a-4c32-850c-a29a65a31884&lang=ru_RU")
+    script(src!="<?=SITE_TEMPLATE_PATH?>/vendor.min.js?v=<?=rand()?>")
+    script(src!="<?=SITE_TEMPLATE_PATH?>/scripts.min.js?v=<?=rand()?>")
+    <?php //require_once("../widget/_widget.inc.php"); ?>

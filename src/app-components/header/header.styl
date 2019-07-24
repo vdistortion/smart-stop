@@ -1,0 +1,33 @@
+.header
+  position relative
+  z-index 1
+  box-shadow 0 5px 10px rgba(c-black, .4)
+  background-color cp-bedge1
+  &__wrapper
+    row-flex()
+    justify-content space-between
+    align-items center
+    height 80px
+  &__date
+    col()
+    color cp-blue4
+    font-size 45px
+    font-weight 700
+    &:first-letter
+      text-transform uppercase
+  &__time
+    col()
+    color cp-blue1
+    font-size 50px
+    font-weight 900
+
+  &__pulse
+      animation pulse 1s linear infinite
+
+@keyframes pulse
+  50%
+    color cp-blue1
+  51%
+    color rgba(cp-blue1, 0)
+  100%
+    color rgba(cp-blue1, 0)

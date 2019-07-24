@@ -1,0 +1,14 @@
+<?php $type = (isset($_GET['type'])) ? $_GET['type'] : ''; ?>
+<?php $name = (isset($_GET['name'])) ? $_GET['name'] : ''; ?>
+<?php $route = (isset($_GET['route'])) ? $_GET['route'] : ''; ?>
+
+mixin route-header(map)
+  - var toggle = (map) ? 'schedule' : 'map';
+  - var link = (map) ? './03.php?<?=$_SERVER["QUERY_STRING"]?>' : './04.php?<?=$_SERVER["QUERY_STRING"]?>';
+  .route-header(class!="route-header--<?=$type?>")
+    .l-wrapper
+      //- a.route-header__toggle(href!=link, class="route-header__toggle--"+toggle)
+      .route-header__title
+        a.route-header__back(href="./index.php") №<?=$name?>
+        .route-header__total
+          b <?=$route?>

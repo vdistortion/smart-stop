@@ -1,0 +1,10 @@
+extends ../layout/main
+
+append variables
+  - var title = 'Карта';
+
+block content
+  +route-short()
+  +search-map()
+  +tabs()
+  +map()
