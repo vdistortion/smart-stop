@@ -16,7 +16,7 @@ class Transport {
 
     setTimeout(() => {
       this.getRoutes(fn);
-    }, 5000);
+    }, 10000);
   }
 }
 

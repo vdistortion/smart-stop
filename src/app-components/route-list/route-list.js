@@ -108,6 +108,10 @@ export default () => {
     } else {
       short.innerHTML = view.render({routes, shortCount}, 'short');
       model.maps.map.container.fitToViewport();
+
+      if (model.maps.leafletMAP) {
+        model.maps.leafletMAP.setView(model.maps.coords, model.maps._zoom);
+      }
     }
   }
 

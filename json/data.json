@@ -11,12 +11,12 @@
   },
   {
     "title": "Детальная страница маршрута",
-    "link": "03.php",
+    "link": "03.php?id=chelyabinsk_trol_17&type=trol&name=17&route=ул.Молдавская%20-%20Ж.Д.Вокзал",
     "number": "03"
   },
   {
     "title": "Детальная карта маршрута",
-    "link": "04.php",
+    "link": "04.php?id=chelyabinsk_trol_17&type=trol&name=17&route=ул.Молдавская%20-%20Ж.Д.Вокзал",
     "number": "04"
   }
 ]

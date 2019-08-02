@@ -1,0 +1,84 @@
+#leaflet
+  transition opacity .5s
+  &.b-hidden
+    opacity 0
+    visibility hidden
+  .ymaps-2-1-74-copyright
+    display none
+  .leaflet-div-icon
+    background-color transparent
+    border none
+
+.ll-marker
+  width 50px
+  height 50px
+  position absolute
+  top 50%
+  left 50%
+  transform translate(-50%, -50%)
+  &:hover
+    z-index 9999
+  &__img
+  &__number
+    position absolute
+    left 0
+    top 0
+    width 100%
+    height 100%
+    line-height 25px
+    text-align center
+    font-weight 700
+  &__img
+    transition transform 10s
+    transform rotate(90deg)
+    svg
+      position absolute
+      bottom 0
+      left 0
+      width 100%
+      path
+        stroke-width 3
+        stroke #fff
+  &__number
+    background-size 25px auto
+    background-repeat no-repeat
+    background-position center
+    span
+      position relative
+      bottom 70%
+      font-size 34px
+  &--tram &__number
+    background-image url(images/svg/tram.svg)
+    background-size 35px auto
+    span
+      color #711355
+  &--trol &__number
+    background-image url(images/svg/trol.svg)
+    span
+      color #012E82
+  &--bus &__number
+  &--seasonbus &__number
+    background-image url(images/svg/bus.svg)
+    span
+      color #801D04
+  &--taxi &__number
+    background-image url(images/svg/taxi.svg)
+    span
+      color #924E00
+  &--tram svg
+    circle
+    path
+      fill #CF40A4
+  &--trol svg
+    circle
+    path
+      fill #4B7CD7
+  &--bus svg
+  &--seasonbus svg
+    circle
+    path
+      fill #FE623B
+  &--taxi svg
+    circle
+    path
+      fill #FF8800

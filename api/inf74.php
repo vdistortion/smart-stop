@@ -6,7 +6,6 @@ if (($handle = fopen('http://transport.gis.inf74.ru/getroutes', 'r')) !== FALSE)
 
     $associations = ['', 'trol', 'bus', 'tram', 'taxi', 'seasonbus'];
     $associations_ru = ['', 'Троллейбус', 'Автобус', 'Трамвай', 'Маршрутка', 'Садовый автобус'];
-    $colors = ['', '#4b7cd7', '#fe623b', 'green', 'gray', 'yellow'];
 
     $row = 0;
 
@@ -19,7 +18,6 @@ if (($handle = fopen('http://transport.gis.inf74.ru/getroutes', 'r')) !== FALSE)
                 'id' => $data[6],
                 'type' => $associations[$type],
                 'name' => $associations_ru[$type],
-                'color' => $colors[$type],
                 'number' => $data[1],
                 'coords' => [$lat, $lng],
                 'azimuth' => intval($data[5])

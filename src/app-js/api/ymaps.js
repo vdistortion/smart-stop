@@ -8,6 +8,10 @@ import inf74 from './inf74';
 
 class YandexAPI {
   constructor() {
+    this.leaflet = document.querySelector('#leaflet');
+    this.leafletMAP = null;
+    this.leafletLAYER = null;
+    this.leafletDB = {};
     this.stopName = "пл. Революции";
     this.coords = [55.16041, 61.40567];
     this.suggests = [];
@@ -39,15 +43,63 @@ class YandexAPI {
           this.map.container.fitToViewport();
           this.map.setBounds(this.map.geoObjects.getBounds());
           this.reset();
+
+          if (this.leaflet) {
+            this.leaflet.classList.add('b-hidden')
+          }
         });
 
-        // this.transportInit();
+        this.leafletInit();
+        this.transportInit();
 
         if (this.isSearch()) this.searchInit();
 
         this.getAllRoutes();
       }
     });
+  }
+
+  leafletInit() {
+    if (!this.leaflet) return;
+
+    this.leafletMAP = L.map('leaflet', {
+      center: this.coords,
+      zoom: this._zoom,
+      scrollWheelZoom: false,
+      zoomControl: false,
+      attributionControl: false,
+      closePopupOnClick: false
+    });
+
+    const stop = L.marker([55.16041, 61.40567], {
+      icon: L.divIcon({
+        html: `
+        <div style="
+          width: 54px;
+          height: 54px;
+          box-shadow: 0 11px 13px rgba(0, 0, 0, 0.47);
+          border: 5px solid #ffffff;
+          background-color: #084ac4;
+          border-radius: 50%;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translateX(-50%);
+          z-index: 4;
+        "></div>`
+      })
+    }).addTo(this.leafletMAP);
+
+    stop.bindPopup(`
+      <div style='text-align: center; color: #084ac4; font-size: 30px; font-weight: 700;'>ВЫ ЗДЕСЬ</div>
+      <div style='text-align: center; font-size: 24px;'>ост. Пл. Революции</div>`, {
+      closeButton: false,
+      closeOnClick: false
+    }).openPopup();
+
+    this.leafletLAYER = L.layerGroup().addTo(this.leafletMAP);
+
+    L.yandex().addTo(this.leafletMAP);
   }
 
   getAllRoutes() {
@@ -58,6 +110,20 @@ class YandexAPI {
       const arData = JSON.parse(response);
       const arShape = arData.shapes[id];
       const arStops = arData.stops;
+
+      this.map.geoObjects.add(new ymaps.GeoObject({
+          geometry: {
+            type: "Point",
+            coordinates: this.coords
+          },
+          properties: {
+            iconContent: '<b>ВЫ ЗДЕСЬ</b>'
+          }
+        }, {
+          preset: 'islands#blackStretchyIcon',
+          draggable: false,
+          iconColor: '#084ac4'
+      }));
 
       if (Object.keys(arShape).length) {
         let shape = null;
@@ -118,22 +184,47 @@ class YandexAPI {
   }
 
   transportInit() {
-    inf74.getRoutes((routes) => {
-      _.each(routes, route => {
-        this.map.geoObjects.add(new ymaps.GeoObject({
-          geometry: {
-            type: "Point",
-            coordinates: route.coords
-          },
-          properties: {
-            iconContent: route.number,
-            hintContent: route.name
-          }
-        }, {
-          preset: 'islands#circleIcon',
-          draggable: false,
-          iconColor: route.color
-        }));
+    inf74.getRoutes((data) => {
+      const arNew = Object.keys(data);
+      const arOld = Object.keys(this.leafletDB);
+      const add = arNew.filter(el => !arOld.includes(el));
+      const del = arOld.filter(el => !arNew.includes(el));
+
+      _.each(add, id => {
+        const route = data[id];
+
+        const marker = L.animatedMarker([route.coords], {
+          icon: L.divIcon({
+            html: view.render(route, 'marker')
+          }),
+          title: route.name,
+          riseOnHover: true,
+          interval: 10000
+        }).addTo(this.leafletLAYER);
+
+        this.leafletDB[id] = {
+          route,
+          marker,
+          coords: [route.coords]
+        };
+      });
+
+      _.each(del, id => {
+        this.leafletMAP.removeLayer(this.leafletDB[id].marker);
+        delete this.leafletDB[id];
+      });
+
+      _.each(data, (route, key) => {
+        if (![...add, ...del].includes(key)) {
+          const moveRoute = this.leafletDB[key];
+          const marker = moveRoute.marker;
+          const el = document.querySelector(`.js-marker-azimuth[data-id="${key}"]`);
+          if (el && route.azimuth) el.style.transform = `rotate(${route.azimuth}deg)`;
+          moveRoute.coords.push(route.coords);
+          moveRoute.coords.shift();
+          marker.setLine(moveRoute.coords);
+          marker.start();
+        }
       });
     });
   }
@@ -157,6 +248,10 @@ class YandexAPI {
       this.map.setCenter(this.coords);
       this.map.container.fitToViewport();
       this.reset();
+
+      if (this.leaflet) {
+        this.leaflet.classList.add('b-hidden')
+      }
     });
 
     events.on('input', '#suggest', e => {
@@ -180,71 +275,61 @@ class YandexAPI {
         this.coords = response.stop.coords;
       }
 
-      this.map.geoObjects.add(new ymaps.GeoObject({
-          geometry: {
-            type: "Point",
-            coordinates: this.coords
-          },
-          properties: {
-            iconContent: '<b>ВЫ ЗДЕСЬ</b>'
-          }
-        }, {
-          preset: 'islands#blackStretchyIcon',
-          draggable: false,
-          iconColor: '#084ac4'
-      }));
-
       this.map.setZoom(this._zoom);
       this.map.setCenter(this.coords);
       this.map.container.fitToViewport();
 
-      // this.transportInit();
+      this.transportInit();
+    }
+
+    if (this.leafletMAP) {
+      this.leafletMAP.setView(this.coords, this._zoom);
     }
   }
 
   drawingPaths(value) {
 
-      ymaps.geocode(value).then(res => {
+    ymaps.geocode(value).then(res => {
 
-        let newPath = res.geoObjects.get(0).properties.get('boundedBy');
-        let coord1 = (newPath[1][0] - newPath[0][0]) / 2 + newPath[0][0];
-        let coord2 = (newPath[1][1] - newPath[0][1]) / 2 + newPath[0][1];
-        let toCoords = [coord1, coord2];
+      let newPath = res.geoObjects.get(0).properties.get('boundedBy');
+      let coord1 = (newPath[1][0] - newPath[0][0]) / 2 + newPath[0][0];
+      let coord2 = (newPath[1][1] - newPath[0][1]) / 2 + newPath[0][1];
+      let toCoords = [coord1, coord2];
 
-        this.empty();
-        this.map.geoObjects.removeAll();
-        this.map.geoObjects.add(new ymaps.multiRouter.MultiRoute({
-          referencePoints: [
-            this.coords,
-            toCoords
-          ],
-          params: {
-            routingMode: 'masstransit'
-          }
-        }, {
-          boundsAutoApply: true
-        }));
+      this.empty();
+      this.map.geoObjects.removeAll();
+      this.map.geoObjects.add(new ymaps.multiRouter.MultiRoute({
+        referencePoints: [
+          this.coords,
+          toCoords
+        ],
+        params: {
+          routingMode: 'masstransit'
+        }
+      }, {
+        boundsAutoApply: true
+      }));
 
-        ymaps.route([this.coords, toCoords], {
-          routingMode: 'masstransit',
-          mapStateAutoApply: true,
-          multiRoute: true
-        }).then(routes => {
-            document.querySelector('#superlist').innerHTML = '';
-            this._routesStr = routes;
-            this.renderRoutes(routes);
+      ymaps.route([this.coords, toCoords], {
+        routingMode: 'masstransit',
+        mapStateAutoApply: true,
+        multiRoute: true
+      }).then(routes => {
+          document.querySelector('#superlist').innerHTML = '';
+          this._routesStr = routes;
+          this.renderRoutes(routes);
 
-            document.querySelector('#superlist').innerHTML = view.render(this.superlist, 'list');
+          document.querySelector('#superlist').innerHTML = view.render(this.superlist, 'list');
 
-            setTimeout(() => {
-              this.map.setBounds(this.map.geoObjects.getBounds());
-              this.map.container.fitToViewport();
-            }, 0);
-          }, error => {
-            alert('Возникла ошибка: ' + error.message);
-        });
-
+          setTimeout(() => {
+            this.map.setBounds(this.map.geoObjects.getBounds());
+            this.map.container.fitToViewport();
+          }, 0);
+        }, error => {
+          alert('Возникла ошибка: ' + error.message);
       });
+
+    });
 
   }
 

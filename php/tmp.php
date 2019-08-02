@@ -17,6 +17,9 @@
     <meta name="copyright" content="<?=date("Y")?>">
     <link rel="icon" href="<?=SITE_TEMPLATE_PATH?>/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="<?=SITE_TEMPLATE_PATH?>/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/leaflet/leaflet.css">
+    <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/leaflet/MarkerCluster.css">
+    <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/leaflet/MarkerCluster.Default.css">
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/vendor.min.css?v=<?=rand()?>">
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/template_styles.css?v=<?=rand()?>">
   </head>
@@ -90,8 +93,24 @@
 </div>
 
       </script>
+      <script type="text/template" data-name="marker"><div class="ll-marker ll-marker--<%=type%>">
+  <div class="ll-marker__img js-marker-azimuth" data-id="<%=id%>" style="transform: rotate(<%=azimuth%>deg);">
+    <svg viewBox="0 0 116 167">
+      <g transform="translate(-3043 3887)">
+        <circle cx="58" cy="58" r="58" transform="translate(3043 -3720) rotate(-90)"/>
+        <path d="M0,0H0a57.721,57.721,0,0,1,9.759,32.21A57.72,57.72,0,0,1,0,64.425L50.762,32.211Z" transform="translate(3068.789 -3836.239) rotate(-90)"/>
+      </g>
+    </svg>
+  </div>
+  <div class="ll-marker__number"><span><%=number%></span></div>
+</div>
+
+      </script>
     </div>
     <script src="https://api-maps.yandex.ru/2.1/?apikey=042632bb-9b8a-4c32-850c-a29a65a31884&amp;lang=ru_RU"></script>
+    <script src="<?=SITE_TEMPLATE_PATH?>/leaflet/leaflet.js"></script>
+    <script src="<?=SITE_TEMPLATE_PATH?>/leaflet/AnimatedMarker.js"></script>
+    <script src="<?=SITE_TEMPLATE_PATH?>/leaflet/Yandex.js"></script>
     <script src="<?=SITE_TEMPLATE_PATH?>/vendor.min.js?v=<?=rand()?>"></script>
     <script src="<?=SITE_TEMPLATE_PATH?>/scripts.min.js?v=<?=rand()?>"></script><?php //require_once("../widget/_widget.inc.php"); ?>
   </body>
