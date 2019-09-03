@@ -199,7 +199,7 @@ class YandexAPI {
           }),
           title: route.name,
           riseOnHover: true,
-          interval: 10000
+          interval: 30000
         }).addTo(this.leafletLAYER);
 
         this.leafletDB[id] = {
@@ -221,9 +221,14 @@ class YandexAPI {
           const el = document.querySelector(`.js-marker-azimuth[data-id="${key}"]`);
           if (el && route.azimuth) el.style.transform = `rotate(${route.azimuth}deg)`;
           moveRoute.coords.push(route.coords);
-          moveRoute.coords.shift();
-          marker.setLine(moveRoute.coords);
-          marker.start();
+          // console.log(moveRoute.coords);
+          if (moveRoute.coords.length > 4) {
+            moveRoute.coords.shift();
+          }
+          if (moveRoute.coords.length > 3) {
+            marker.setLine(moveRoute.coords);
+            marker.start();
+          }
         }
       });
     });

@@ -2,9 +2,7 @@ import Ajax from 'root/common/ajax';
 
 // http://transport.gis.inf74.ru/getroutes
 class Transport {
-  constructor() {
-
-  }
+  constructor() {}
 
   getRoutes(fn) {
     Ajax({

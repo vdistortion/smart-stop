@@ -13,7 +13,7 @@ function toFormData(setup) {
     formData.append(key, item);
   });
 
-  setup.data = formData;
+  return formData;
 }
 
 export default function (setup = {}) {
@@ -26,8 +26,7 @@ export default function (setup = {}) {
   config.method = (setup.method) ? setup.method : 'GET';
 
   if (data.has(_.toUpper(config.method))) {
-    toFormData(setup);
-    config.data = setup.data;
+    config.data = toFormData(setup.data);
   } else {
     config.params = setup.data;
   }
