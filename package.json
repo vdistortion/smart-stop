@@ -6,7 +6,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "format": "prettier . --write",
+    "grid": "tsx grid.ts && npx sass-migrator division src/_grid.scss && prettier --write src/_grid.scss"
   },
   "private": true,
   "dependencies": {
@@ -33,6 +35,9 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "prettier": "3.3.1",
+    "smart-grid": "^2.1.2",
+    "tsx": "^4.12.0",
     "typescript": "~5.4.2"
   }
 }

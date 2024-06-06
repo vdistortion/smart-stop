@@ -1,0 +1,13 @@
+<!-- <Пагинатор> -->
+<div data-widget="pagination">
+  <div class="WidgetWrap">
+    <ul>
+      @for (page of pages; track page.title) {
+        <li>
+          <a routerLink="{{ page.path }}">{{ page.title }}</a>
+        </li>
+      }
+    </ul>
+  </div>
+</div>
+<!-- </Пагинатор> -->

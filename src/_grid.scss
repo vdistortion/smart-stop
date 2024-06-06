@@ -1,0 +1,264 @@
+@use 'sass:math';
+
+$columns: 24;
+$atom: math.div(100%, $columns);
+
+$offset: 2%;
+
+$offset_one_side: ($offset * 0.5);
+
+$fields: 45px;
+
+@mixin wrapper-full() {
+  padding-left: $fields;
+  padding-right: $fields;
+}
+
+@mixin row-offsets() {
+  margin-left: ($offset_one_side * -1);
+  margin-right: ($offset_one_side * -1);
+}
+
+@mixin col-offsets($type) {
+  #{$type}-left: $offset_one_side;
+  #{$type}-right: $offset_one_side;
+}
+
+@mixin wrapper() {
+  max-width: 990px;
+  margin: 0 auto;
+  @include wrapper-full();
+}
+
+@mixin row-flex() {
+  display: flex;
+  flex-wrap: wrap;
+  @include row-offsets();
+}
+
+@mixin row-float() {
+  @include row-offsets();
+  @include cf();
+}
+
+@mixin row-ib() {
+  @include row-offsets();
+}
+
+@mixin col() {
+  box-sizing: border-box;
+  word-wrap: break-word;
+  @include col-offsets(margin);
+}
+
+@mixin col-float() {
+  float: left;
+}
+
+@mixin col-ib() {
+  display: inline-block;
+  vertical-align: top;
+}
+
+@mixin col-padding() {
+  word-wrap: break-word;
+  @include col-offsets(padding);
+}
+
+@mixin col-size($n) {
+  width: $atom * $n - $offset;
+}
+
+@mixin shift($n) {
+  margin-left: $atom * $n + $offset_one_side;
+  margin-right: $atom * $n + $offset_one_side;
+}
+
+@mixin shift-left($n) {
+  margin-left: $atom * $n + $offset_one_side;
+}
+
+@mixin shift-right($n) {
+  margin-right: $atom * $n + $offset_one_side;
+}
+
+@mixin shift-padding($n) {
+  padding-left: $atom * $n + $offset_one_side;
+  padding-right: $atom * $n + $offset_one_side;
+}
+
+@mixin shift-padding-left($n) {
+  padding-left: $atom * $n + $offset_one_side;
+}
+
+@mixin shift-padding-right($n) {
+  padding-right: $atom * $n + $offset_one_side;
+}
+
+@mixin from($min_width) {
+  @media screen and (min-width: $min_width) {
+    @content;
+  }
+}
+
+@mixin to($max_width) {
+  @media screen and (max-width: $max_width) {
+    @content;
+  }
+}
+
+@mixin from-to($min_width, $max_width) {
+  @media screen and (min-width: $min_width) and (max-width: $max_width) {
+    @content;
+  }
+}
+
+@mixin u-row-flex($offset) {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: math.div($offset, -2);
+  margin-right: math.div($offset, -2);
+}
+
+@mixin u-col($offset) {
+  box-sizing: border-box;
+  word-wrap: break-word;
+  margin-left: ($offset * 0.5);
+  margin-right: ($offset * 0.5);
+}
+
+@mixin u-size($n, $columns, $offset) {
+  width: #{calc(100% / #{$columns} * #{$n} - #{$offset})};
+}
+
+@mixin reset() {
+  body,
+  div,
+  dl,
+  dt,
+  dd,
+  ul,
+  li,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  pre,
+  code,
+  form,
+  fieldset,
+  input,
+  textarea,
+  p,
+  blockquote,
+  th,
+  td {
+    margin: 0;
+    padding: 0;
+  }
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+  fieldset,
+  img,
+  abbr {
+    border: 0;
+  }
+  address,
+  caption,
+  cite,
+  code,
+  dfn,
+  em,
+  strong,
+  th,
+  var {
+    font-style: normal;
+    font-weight: normal;
+  }
+  ul li {
+    list-style: none;
+  }
+  caption,
+  th {
+    text-align: left;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: 100%;
+    font-weight: normal;
+  }
+  sup {
+    vertical-align: text-top;
+  }
+  sub {
+    vertical-align: text-bottom;
+  }
+  input,
+  textarea,
+  select {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+  }
+  legend {
+    color: #000;
+  }
+  article,
+  aside,
+  details,
+  figcaption,
+  figure,
+  footer,
+  header,
+  hgroup,
+  menu,
+  nav,
+  section,
+  main {
+    display: block;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@mixin debug($background, $outline) {
+  height: 100vh;
+  position: fixed;
+  width: 100%;
+
+  > div {
+    height: inherit;
+    @include wrapper();
+
+    > div {
+      height: inherit;
+      @include row-flex();
+
+      > div {
+        @include col();
+        @include col-size(1);
+        height: inherit;
+        outline: $outline;
+        background: $background;
+      }
+    }
+  }
+}
+
+@mixin cf() {
+  &::after {
+    display: block;
+    content: '';
+    clear: both;
+  }
+}

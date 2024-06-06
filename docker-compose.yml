@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  nginx:
+    image: registry.is74.ru/docker/web/nginx:1.15-alpine-r2
+    depends_on:
+      - php-fpm
+    volumes:
+      - .:/var/www
+    environment:
+      - NGINX_SITE_SERVER_NAME=infomat
+      - NGINX_SITE_DOCUMENT_ROOT=/var/www
+    ports:
+      - 127.0.0.1:8101:80
+    restart: always
+
+  php-fpm:
+    image: registry.is74.ru/docker/web/php:7.2-fpm-r8
+    volumes:
+      - .:/var/www
+    restart: always
