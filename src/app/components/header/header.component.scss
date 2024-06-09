@@ -1,0 +1,49 @@
+@import '../../../grid';
+
+.header {
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 5px 10px rgba(var(--c-black), 0.4);
+  background-color: var(--color-bedge1);
+
+  &__wrapper {
+    @include row-flex();
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+  }
+
+  &__date {
+    @include col();
+    color: var(--color-blue4);
+    font-size: 45px;
+    font-weight: 700;
+
+    &:first-letter {
+      text-transform: uppercase;
+    }
+  }
+
+  &__time {
+    @include col();
+    color: var(--color-blue1);
+    font-size: 50px;
+    font-weight: 900;
+  }
+
+  &__pulse {
+    animation: header-pulse-literal 1s linear infinite;
+  }
+}
+
+@keyframes header-pulse-literal {
+  50% {
+    color: var(--color-blue1);
+  }
+  51% {
+    color: transparent;
+  }
+  100% {
+    color: transparent;
+  }
+}

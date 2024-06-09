@@ -1,5 +1,67 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+@import 'grid', 'mixins', 'vars';
+
+@include reset();
+
+html {
+  font-size: 62.5%;
+}
 
 body {
   font-family: 'Roboto', sans-serif;
+  font-size: 1.6rem;
+  min-width: 32rem;
+  line-height: 1.2;
+  overflow-x: hidden;
+}
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  @include no-outline();
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+textarea {
+  resize: none;
+}
+
+[hidden] {
+  display: none;
+}
+
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.l-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.l-wrapper {
+  @include wrapper();
+  height: 100%;
+  position: relative;
+}
+
+.l-map {
+  flex-grow: 1;
+  pointer-events: none;
 }
