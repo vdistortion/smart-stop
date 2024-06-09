@@ -1,0 +1,36 @@
+.btn-route {
+  width: 100%;
+  max-width: 240px;
+  height: 80px;
+  border-radius: 14px;
+  opacity: 0.85;
+  color: var(--c-white);
+  font-size: 45px;
+  font-weight: 400;
+  letter-spacing: 1.35px;
+  text-align: left;
+  padding-left: 90px;
+  background-repeat: no-repeat;
+  background-position: 25px center;
+
+  &--short {
+    max-width: 180px;
+    height: 60px;
+    font-size: 35px;
+    letter-spacing: 1.05px;
+    padding-left: 70px;
+    background-size: 30px;
+  }
+
+  &--bus {
+    background-color: var(--color-red1);
+    opacity: 0.7;
+    background-image: url('/svg/bus.svg');
+  }
+
+  &--trol {
+    background-color: var(--color-blue3);
+    opacity: 0.85;
+    background-image: url('/svg/trol.svg');
+  }
+}
