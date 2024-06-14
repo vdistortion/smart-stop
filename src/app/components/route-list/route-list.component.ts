@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { SimplebarAngularModule } from 'simplebar-angular';
 import { ButtonRouteComponent } from '../button-route/button-route.component';
-import { SimplebarAngularModule } from 'simplebar-angular/src/lib/simplebar-angular.module';
 
 @Component({
   selector: 'app-route-list',
   standalone: true,
-  imports: [RouterLink, ButtonRouteComponent, SimplebarAngularModule],
+  imports: [RouterLink, SimplebarAngularModule, ButtonRouteComponent],
   templateUrl: './route-list.component.html',
   styleUrl: './route-list.component.scss',
 })
