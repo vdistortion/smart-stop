@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RouteHeaderComponent } from '../../components/route-header/route-header.component';
+import { RouteDetailComponent } from '../../components/route-detail/route-detail.component';
 import { routeList } from '../../data/routes';
 
 @Component({
   selector: 'app-detail-page',
   standalone: true,
-  imports: [RouteHeaderComponent],
+  imports: [RouteHeaderComponent, RouteDetailComponent],
   templateUrl: './detail-page.component.html',
   styleUrl: './detail-page.component.scss',
 })

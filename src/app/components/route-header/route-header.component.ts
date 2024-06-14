@@ -12,5 +12,5 @@ export class RouteHeaderComponent {
   @Input({ required: true }) type: string;
   @Input({ required: true }) number: string | number;
   @Input({ required: true }) route: string;
-  @Input() page: 'route' | 'detail' = 'route';
+  @Input({ required: true }) page: 'route' | 'detail';
 }
