@@ -1,1 +1,7 @@
-<p>detail-page works!</p>
+@if (transport) {
+  <app-route-header
+    [type]="transport.type"
+    [number]="transport.number"
+    [route]="transport.route"
+  ></app-route-header>
+}

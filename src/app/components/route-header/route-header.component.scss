@@ -1,0 +1,117 @@
+@import '../../../grid';
+
+.route-header {
+  &--trol {
+    background: linear-gradient(
+      to right,
+      #2c66d1 0,
+      #2c66d1 50%,
+      #e4edfc 50%,
+      #e4edfc 100%
+    );
+  }
+
+  &--bus {
+    background: linear-gradient(
+      to right,
+      #fd8161 0,
+      #fd8161 50%,
+      #e4edfc 50%,
+      #e4edfc 100%
+    );
+  }
+
+  &__toggle {
+    position: absolute;
+    z-index: 1;
+    top: calc(100% + 30px);
+    right: 45px;
+    width: 144px;
+    height: 144px;
+    border-radius: 14px;
+    border: 3px solid #084ac4;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+
+    &::after {
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      color: #084ac4;
+      font-size: 25px;
+      font-weight: 500;
+    }
+
+    &--route {
+      background-image: url('/svg/map.svg');
+      background-position: center 10px;
+
+      &::after {
+        content: 'На карте';
+      }
+    }
+
+    &--detail {
+      background-image: url('/svg/schedule.svg');
+      background-position: center 15px;
+
+      &::after {
+        content: 'Списком';
+      }
+    }
+  }
+
+  &__title {
+    @include row-flex();
+    height: 150px;
+  }
+
+  &__back {
+    @include col-padding();
+    @include col-size(10);
+    color: var(--c-white);
+    font-size: 60px;
+    font-weight: 500;
+    height: 100%;
+    box-sizing: border-box;
+    background-size: 46px, 55px;
+    background-position:
+      left center,
+      100px center;
+    background-repeat: no-repeat;
+    padding: 40px 35px 40px 200px;
+  }
+
+  &--trol &__back {
+    background-image: url('/svg/arrow.svg'), url('/svg/trol.svg');
+    background-color: var(--color-blue3);
+  }
+
+  &--bus &__back {
+    background-image: url('/svg/bus-back.svg'), url('/svg/bus.svg');
+    background-color: #fd8161;
+  }
+
+  &__total {
+    @include col-padding();
+    @include col-size(14);
+    box-sizing: border-box;
+    color: #084ac4;
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 45px;
+    text-transform: uppercase;
+    background-color: #e4edfc;
+    height: 100%;
+    padding: 55px 35px;
+    position: relative;
+
+    b {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+}

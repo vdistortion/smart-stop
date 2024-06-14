@@ -2,7 +2,10 @@
   <ngx-simplebar class="l-wrapper">
     <div id="output-all">
       @for (route of routeList; track route.route) {
-        <a [routerLink]="'/detail/'+route.number" class="route-list__item">
+        <a
+          [routerLink]="'/detail/' + route.type + '/' + route.number"
+          class="route-list__item"
+        >
           <div class="route-list__button">
             <app-button-route
               [number]="route.number"
@@ -10,9 +13,9 @@
             ></app-button-route>
           </div>
           <div class="route-list__route">{{ route.route }}</div>
-          <div class="route-list__time">{{
-            route.time ? route.time + ' мин' : ''
-          }}</div>
+          <div class="route-list__time">
+            {{ route.time ? route.time + ' мин' : '' }}
+          </div>
         </a>
       }
     </div>

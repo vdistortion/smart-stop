@@ -1,0 +1,17 @@
+<div class="route-header" [class]="['route-header--' + type]">
+  <div class="l-wrapper">
+    <a
+      [routerLink]="'/' + page + '/' + type + '/' + number + '/'"
+      class="route-header__toggle"
+      [class]="['route-header__toggle--' + page]"
+    ></a>
+    <div class="route-header__title">
+      <a class="route-header__back" routerLink=""> №{{ number }} </a>
+      <div class="route-header__total">
+        <b>
+          {{ route }}
+        </b>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-interface IRoute {
+export interface IRoute {
   number: number | string;
   type: string;
   route: string;

@@ -3,7 +3,10 @@
     @if (routes.length) {
       <div class="route-short__wrapper">
         @for (route of routes; track route.route) {
-          <a class="route-short__item" [routerLink]="'/detail/' + route.number">
+          <a
+            class="route-short__item"
+            [routerLink]="'/detail/' + route.type + '/' + route.number"
+          >
             <span class="route-short__button">
               <app-button-route
                 [number]="route.number"

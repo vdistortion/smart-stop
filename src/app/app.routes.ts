@@ -16,12 +16,12 @@ export const routes: Routes = [
     title: 'Карта',
   },
   {
-    path: 'detail/:id',
+    path: 'detail/:type/:number',
     component: DetailPageComponent,
     title: 'Детальная страница маршрута',
   },
   {
-    path: 'route/:id',
+    path: 'route/:type/:number',
     component: RoutePageComponent,
     title: 'Детальная карта маршрута',
   },
