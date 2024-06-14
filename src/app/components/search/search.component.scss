@@ -1,14 +1,17 @@
 @import '../../../grid';
-@import '../../../mixins';
 
 .search {
-  background-color: rgba(8, 74, 196, .25);
+  background-color: rgba(8, 74, 196, 0.25);
 
   &__wrapper {
     @include row-flex();
     justify-content: space-between;
     align-items: center;
     height: 170px;
+
+    *:only-child {
+      width: 100%;
+    }
   }
 
   &__link {
@@ -28,7 +31,10 @@
     padding: 25px;
     box-sizing: border-box;
     border: 0;
-    @include no-outline();
+
+    &:focus {
+      outline: 0;
+    }
 
     &::placeholder {
       color: var(--color-blue2);

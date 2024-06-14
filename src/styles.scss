@@ -1,15 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
-@import 'grid', 'mixins', 'vars';
+@import 'grid', 'map', 'vars';
 
 @include reset();
 
 html {
-  font-size: 62.5%;
+  font-size: 62.5%; // 10px
 }
 
 body {
   font-family: 'Roboto', sans-serif;
-  font-size: 1.6rem;
+  font-size: 1.6rem; // 16px
   min-width: 32rem;
   line-height: 1.2;
   overflow-x: hidden;
@@ -23,7 +23,10 @@ button {
   border: none;
   cursor: pointer;
   padding: 0;
-  @include no-outline();
+
+  &:focus {
+    outline: 0;
+  }
 }
 
 a {

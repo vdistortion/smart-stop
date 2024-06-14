@@ -1,23 +1,21 @@
 <div class="route-list">
-  <ngx-simplebar class="l-wrapper">
-    <div id="output-all">
-      @for (route of routeList; track route.route) {
-        <a
-          [routerLink]="'/detail/' + route.type + '/' + route.number"
-          class="route-list__item"
-        >
-          <div class="route-list__button">
-            <app-button-route
-              [number]="route.number"
-              [type]="route.type"
-            ></app-button-route>
-          </div>
-          <div class="route-list__route">{{ route.route }}</div>
-          <div class="route-list__time">
-            {{ route.time ? route.time + ' мин' : '' }}
-          </div>
-        </a>
-      }
-    </div>
+  <ngx-simplebar id="output-all" class="l-wrapper">
+    @for (route of routeList; track route.route) {
+      <a
+        [routerLink]="'/detail/' + route.type + '/' + route.number"
+        class="route-list__item"
+      >
+        <div class="route-list__button">
+          <app-button-route
+            [number]="route.number"
+            [type]="route.type"
+          ></app-button-route>
+        </div>
+        <div class="route-list__route">{{ route.route }}</div>
+        <div class="route-list__time">
+          {{ route.time ? route.time + ' мин' : '' }}
+        </div>
+      </a>
+    }
   </ngx-simplebar>
 </div>

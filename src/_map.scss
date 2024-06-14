@@ -1,5 +1,17 @@
-@mixin no-outline() {
-  &:focus {
-    outline: 0;
+#leaflet {
+  transition: opacity 0.5s;
+
+  &.b-hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .ymaps-2-1-74-copyright {
+    display: none;
+  }
+
+  .leaflet-div-icon {
+    background-color: transparent;
+    border: none;
   }
 }

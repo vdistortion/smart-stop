@@ -1,0 +1,5 @@
+@import '../../../grid';
+
+.debug {
+  @include debug(var(--c-yellow), 2px solid var(--c-yellow));
+}
