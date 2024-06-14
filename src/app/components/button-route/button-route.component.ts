@@ -8,7 +8,7 @@ import { Component, Input } from '@angular/core';
   styleUrl: './button-route.component.scss',
 })
 export class ButtonRouteComponent {
-  @Input({ required: true }) number: number;
+  @Input({ required: true }) number: string | number;
   @Input({ required: true }) type: string;
   @Input() short: boolean = false;
 

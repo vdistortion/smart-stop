@@ -1,0 +1,26 @@
+@import '../../../grid';
+
+.route-short {
+  &__wrapper {
+    @include row-flex();
+    padding: 20px 0;
+  }
+
+  &__item {
+    @include col();
+    @include col-size(8);
+    padding: 15px 0;
+  }
+
+  &__button {
+    display: flex;
+    align-items: center;
+  }
+
+  &__time {
+    padding-left: 20px;
+    color: var(--c-black);
+    font-size: 30px;
+    font-weight: 700;
+  }
+}

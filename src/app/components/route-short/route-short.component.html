@@ -1,0 +1,24 @@
+<div class="route-short">
+  <div class="l-wrapper" id="short">
+    @if (routeList.length) {
+      <div class="route-short__wrapper">
+        @for (route of routeList; track route.route) {
+          <a class="route-short__item" [routerLink]="'/detail/' + route.number">
+            <span class="route-short__button">
+              <app-button-route
+                [number]="route.number"
+                [type]="route.type"
+                [short]="true"
+              ></app-button-route>
+              <span class="route-short__time">{{
+                route.time ? route.time + ' мин' : ''
+              }}</span>
+            </span>
+          </a>
+        }
+      </div>
+    } @else {
+      <app-empty></app-empty>
+    }
+  </div>
+</div>
