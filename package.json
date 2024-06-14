@@ -8,6 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "format": "prettier . --write",
+    "grep": "sh grep.sh",
     "grid": "tsx grid.ts && npx sass-migrator division src/_grid.scss && prettier --write src/_grid.scss"
   },
   "private": true,

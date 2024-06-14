@@ -16,7 +16,7 @@
 
   &__link {
     @include col();
-    @include col-size(24);
+    @include size(24);
   }
 
   &__input {

@@ -10,5 +10,5 @@ import { ButtonSearchComponent } from '../button-search/button-search.component'
   styleUrl: './search.component.scss',
 })
 export class SearchComponent {
-  @Input() map: boolean = false;
+  @Input() isMapPage: boolean = false;
 }

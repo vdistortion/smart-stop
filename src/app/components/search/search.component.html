@@ -1,17 +1,17 @@
 <div class="search">
   <div class="l-wrapper">
     <div class="search__wrapper">
-      @if (map) {
-        <app-button-back link=""></app-button-back>
-       <input
-         id="suggest"
-         class="search__input"
-         type="text"
-         placeholder="Введите пункт назначения"
-         autocomplete="off"
-       >
+      @if (isMapPage) {
+        <app-button-back></app-button-back>
+        <input
+          id="suggest"
+          class="search__input"
+          type="text"
+          placeholder="Введите пункт назначения"
+          autocomplete="off"
+        />
       } @else {
-        <app-button-search link="map">Поиск маршрута</app-button-search>
+        <app-button-search></app-button-search>
       }
     </div>
   </div>

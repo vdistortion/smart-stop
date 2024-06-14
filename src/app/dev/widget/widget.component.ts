@@ -10,5 +10,10 @@ import { routes } from '../../app.routes';
   styleUrl: './widget.component.scss',
 })
 export class WidgetComponent {
-  public pages: Routes = routes.filter((route) => route.path !== '**');
+  public pages: Routes = routes
+    .filter((route) => route.path !== '**')
+    .map((route) => ({
+      ...route,
+      path: route.path?.replace(':type', 'trol').replace(':number', '8'),
+    }));
 }

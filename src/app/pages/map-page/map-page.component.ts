@@ -9,6 +9,5 @@ import { MapComponent } from '../../components/map/map.component';
   standalone: true,
   imports: [RouteShortComponent, SearchComponent, TabsComponent, MapComponent],
   templateUrl: './map-page.component.html',
-  styleUrl: './map-page.component.scss',
 })
 export class MapPageComponent {}

@@ -70,7 +70,7 @@
 
   &__back {
     @include col-padding();
-    @include col-size(10);
+    @include size(10);
     color: var(--c-white);
     font-size: 60px;
     font-weight: 500;
@@ -96,7 +96,7 @@
 
   &__total {
     @include col-padding();
-    @include col-size(14);
+    @include size(14);
     box-sizing: border-box;
     color: #084ac4;
     font-size: 30px;

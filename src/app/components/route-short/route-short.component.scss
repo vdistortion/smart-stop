@@ -8,7 +8,7 @@
 
   &__item {
     @include col();
-    @include col-size(8);
+    @include size(8);
     padding: 15px 0;
   }
 

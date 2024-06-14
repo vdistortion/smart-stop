@@ -7,6 +7,5 @@ import { SearchComponent } from '../../components/search/search.component';
   standalone: true,
   imports: [RouteListComponent, SearchComponent],
   templateUrl: './home-page.component.html',
-  styleUrl: './home-page.component.scss',
 })
 export class HomePageComponent {}

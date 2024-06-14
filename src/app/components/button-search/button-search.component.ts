@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -8,6 +8,4 @@ import { RouterLink } from '@angular/router';
   templateUrl: './button-search.component.html',
   styleUrl: './button-search.component.scss',
 })
-export class ButtonSearchComponent {
-  @Input({ required: true }) link: string;
-}
+export class ButtonSearchComponent {}

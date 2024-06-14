@@ -10,5 +10,5 @@ import { routeDetail } from '../../data/routes';
   styleUrl: './route-detail.component.scss',
 })
 export class RouteDetailComponent {
-  routes = routeDetail;
+  public routes = routeDetail;
 }

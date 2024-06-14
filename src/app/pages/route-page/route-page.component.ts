@@ -9,7 +9,6 @@ import { routeList } from '../../data/routes';
   standalone: true,
   imports: [RouteHeaderComponent, MapComponent],
   templateUrl: './route-page.component.html',
-  styleUrl: './route-page.component.scss',
 })
 export class RoutePageComponent {
   public transport;

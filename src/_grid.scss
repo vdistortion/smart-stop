@@ -38,7 +38,7 @@ $fields: 45px;
 
 @mixin row-float() {
   @include row-offsets();
-  @include cf();
+  @include clearfix();
 }
 
 @mixin row-ib() {
@@ -65,7 +65,7 @@ $fields: 45px;
   @include col-offsets(padding);
 }
 
-@mixin col-size($n) {
+@mixin size($n) {
   width: $atom * $n - $offset;
 }
 
@@ -246,7 +246,7 @@ $fields: 45px;
 
       > div {
         @include col();
-        @include col-size(1);
+        @include size(1);
         height: inherit;
         outline: $outline;
         background: $background;
@@ -255,7 +255,7 @@ $fields: 45px;
   }
 }
 
-@mixin cf() {
+@mixin clearfix() {
   &::after {
     display: block;
     content: '';

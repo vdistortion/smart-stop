@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
-@import 'grid', 'map', 'vars';
+@import 'grid', 'vars', 'map';
 
 @include reset();
 
@@ -62,9 +62,4 @@ textarea {
   @include wrapper();
   height: 100%;
   position: relative;
-}
-
-.l-map {
-  flex-grow: 1;
-  pointer-events: none;
 }

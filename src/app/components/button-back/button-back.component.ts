@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -8,6 +8,4 @@ import { RouterLink } from '@angular/router';
   templateUrl: './button-back.component.html',
   styleUrl: './button-back.component.scss',
 })
-export class ButtonBackComponent {
-  @Input({ required: true }) link: string;
-}
+export class ButtonBackComponent {}

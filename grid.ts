@@ -11,9 +11,4 @@ grid('./src', {
     fields: '45px' /* side fields */,
   },
   breakPoints: {},
-  mixinNames: {
-    size: 'col-size',
-    clearfix: 'cf',
-  },
-  tab: '  ',
 });
