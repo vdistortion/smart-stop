@@ -1,9 +1,2 @@
-@if (transport) {
-  <app-route-header
-    [type]="transport.type"
-    [number]="transport.number"
-    [route]="transport.route"
-    page="route"
-  ></app-route-header>
-  <app-route-detail></app-route-detail>
-}
+<app-route-header [id]="id" page="route"></app-route-header>
+<app-route-detail [id]="id" [stops]="stops"></app-route-detail>

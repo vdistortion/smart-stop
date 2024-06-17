@@ -115,8 +115,8 @@ export class ApiStaticService {
             const arRoute = route['route_id'].split('_');
             json['routes'].push({
               id: route['route_id'],
-              name: route['route_short_name'],
-              route: route['route_long_name'],
+              name: route['route_short_name'].replaceAll('"', ''),
+              route: route['route_long_name'].replaceAll('"', ''),
               type: arRoute[1] === 'seasonalbus' ? 'bus' : arRoute[1],
             });
           });

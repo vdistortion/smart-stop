@@ -2,12 +2,16 @@
   <div class="l-wrapper">
     <ngx-simplebar class="route-detail__body">
       <ul class="route-detail__list">
-        @for (route of routes; track route.name) {
-          <li class="route-detail__item" [class.b-active]="route.active">
-            {{ route.name }}
+        @for (stop of stops; track stop) {
+          <li
+            class="route-detail__item"
+            [class.b-active]="stop === 'пл. Революции'"
+          >
+            {{ stop }}
           </li>
         }
       </ul>
     </ngx-simplebar>
   </div>
+  <pre>{{ stops }}</pre>
 </div>

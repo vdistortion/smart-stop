@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { LeafletModule } from '@bluehalo/ngx-leaflet';
 import {
   latLng,
@@ -22,17 +22,17 @@ import { animatedMarker } from '../../data/AnimatedMarker';
   templateUrl: './map.component.html',
 })
 export class MapComponent implements OnInit {
+  @Input() id: string = '';
+  private map: any | null = null;
   public center: LatLng = latLng([55.16041, 61.40567]);
   public zoom: number = 17;
   public stopMarker: Marker;
-  public isShow: boolean = false;
 
   public get options() {
     return {
       layers: [
         tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
           maxZoom: 20,
-          attribution: '...',
         }),
       ],
       zoom: this.zoom,
@@ -44,7 +44,10 @@ export class MapComponent implements OnInit {
     };
   }
 
-  public layers: any[] = [];
+  public layersYmaps: any[] = [];
+  public layersStatic: any[] = [];
+  public layersRoute: any[] = [];
+  public isSearch: boolean = false;
   private oldRoutes: Record<string, any> = {};
 
   constructor(
@@ -55,7 +58,10 @@ export class MapComponent implements OnInit {
 
   ngOnInit() {
     this.apiYmaps.activeRoute$.subscribe((route: Route) => {
-      this.layers = [polyline(route.coords, { color: '#ae81ff', weight: 5 })];
+      if (!route.coords.length) return;
+      this.layersYmaps = [this.getLine(route.coords)];
+      this.isSearch = true;
+      this.fitBounds(this.getLine(route.coords).getBounds());
     });
 
     this.apiLiveRoutes.routes$.subscribe((routes) => {
@@ -115,21 +121,56 @@ export class MapComponent implements OnInit {
         }
       });
 
-      this.layers = [
+      this.layersStatic = [
         ...Object.values(this.oldRoutes).map((item) => item.marker),
       ];
     });
 
     this.apiStatic.json$.subscribe((json) => {
-      if (json) {
-        const { coords, name }: { name: string; coords: LatLngExpression } =
-          json['stop'];
-        const marshrut = json['shapes']['chelyabinsk_bus_18'];
-        const line = polyline(marshrut, { color: '#ae81ff', weight: 5 });
-        this.center = latLng(coords);
-        this.stopMarker = marker(coords, {
-          icon: divIcon({
-            html: `
+      if (!json) return;
+
+      const { coords, name }: { name: string; coords: LatLngExpression } =
+        json['stop'];
+      this.center = latLng(coords);
+      this.stopMarker = this.getStop(coords, name);
+
+      if (this.id) {
+        const route = json['shapes'][this.id];
+        const line = this.getLine(route);
+
+        this.layersRoute = [line];
+        this.fitBounds(line.getBounds());
+      }
+    });
+  }
+
+  fitBounds(bounds: any) {
+    setTimeout(() => {
+      if (this.map && bounds) this.map.fitBounds(bounds);
+    }, 1);
+  }
+
+  get page() {
+    return this.id ? 'route' : 'map';
+  }
+
+  get layers() {
+    const layers = [];
+    if (this.stopMarker) layers.push(this.stopMarker);
+    if (this.page === 'route') layers.push(...this.layersRoute);
+    else if (this.isSearch) layers.push(...this.layersYmaps);
+    else layers.push(...this.layersStatic);
+    return layers;
+  }
+
+  getLine(coords: any) {
+    return polyline(coords, { color: '#ae81ff', weight: 5 });
+  }
+
+  getStop(coords: any, name: any) {
+    return marker(coords, {
+      icon: divIcon({
+        html: `
         <div style="
           width: 54px;
           height: 54px;
@@ -144,21 +185,16 @@ export class MapComponent implements OnInit {
           z-index: 4;
         "></div>
             `,
-          }),
-        }).bindPopup(
-          `
+      }),
+    }).bindPopup(
+      `
       <div style='text-align: center; color: #084ac4; font-size: 30px; font-weight: 700;'>ВЫ ЗДЕСЬ</div>
       <div style='text-align: center; font-size: 24px;'>${name}</div>`,
-          {
-            closeButton: false,
-            closeOnClick: false,
-          },
-        );
-        this.isShow = true;
-
-        this.layers = [this.stopMarker, line];
-      }
-    });
+      {
+        closeButton: false,
+        closeOnClick: false,
+      },
+    );
   }
 
   markerHtml(id: string, type: string, number: string, azimuth: string) {
@@ -188,5 +224,9 @@ export class MapComponent implements OnInit {
         <span>${number}</span>
       </div>
     </div>`;
+  }
+
+  initMap(map: any) {
+    this.map = map;
   }
 }

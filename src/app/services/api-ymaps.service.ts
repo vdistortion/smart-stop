@@ -86,10 +86,11 @@ export class ApiYmapsService {
       for (let j = 0, k = path.getSegments().getLength(); j < k; j++) {
         const point = path.getSegments().get(j).properties;
         const geometry = path.getSegments().get(j).geometry;
+        const coords = geometry.getCoordinates();
 
-        if (point.get('transports')) {
+        if (point.get('transports') && point.get('text') && coords.length) {
           temp_i.list.push(point.get('text'));
-          temp_i.coords.push(...geometry.getCoordinates());
+          temp_i.coords.push(...coords);
           point
             .get('transports')
             .forEach((transport: { type: string; name: string }) => {

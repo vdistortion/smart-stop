@@ -14,7 +14,10 @@ export class TabsComponent {
 
   constructor(public apiYmaps: ApiYmapsService) {
     this.apiYmaps.routes$.subscribe((routes: Route[]) => {
-      if (Array.isArray(routes)) this.tabs = routes;
+      if (Array.isArray(routes))
+        this.tabs = routes.filter(
+          (route: any) => route.list.length && route.coords.length > 0,
+        );
     });
   }
 

@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { SimplebarAngularModule } from 'simplebar-angular';
-import { routeDetail } from '../../data/routes';
 
 @Component({
   selector: 'app-route-detail',
@@ -10,5 +9,5 @@ import { routeDetail } from '../../data/routes';
   styleUrl: './route-detail.component.scss',
 })
 export class RouteDetailComponent {
-  public routes = routeDetail;
+  @Input() public stops: string[] = [];
 }

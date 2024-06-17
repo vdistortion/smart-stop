@@ -1,15 +1,12 @@
 <div class="route-short">
   <div class="l-wrapper" id="short">
-    @if (routes.length) {
+    @if (routesShort.length) {
       <div class="route-short__wrapper">
-        @for (route of routes; track route.route) {
-          <a
-            class="route-short__item"
-            [routerLink]="'/detail/' + route.type + '/' + route.number"
-          >
+        @for (route of routesShort; track route.route) {
+          <a class="route-short__item" [routerLink]="'/detail/' + route.id">
             <span class="route-short__button">
               <app-button-route
-                [number]="route.number"
+                [number]="route.name"
                 [type]="route.type"
                 [short]="true"
               ></app-button-route>

@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RouteHeaderComponent } from '../../components/route-header/route-header.component';
 import { RouteDetailComponent } from '../../components/route-detail/route-detail.component';
-import { routeList } from '../../data/routes';
+import { ApiStaticService } from '../../services/api-static.service';
 
 @Component({
   selector: 'app-detail-page',
@@ -10,13 +10,31 @@ import { routeList } from '../../data/routes';
   imports: [RouteHeaderComponent, RouteDetailComponent],
   templateUrl: './detail-page.component.html',
 })
-export class DetailPageComponent {
-  public transport;
+export class DetailPageComponent implements OnInit {
+  public id: string = '';
+  public stops: string[] = [];
 
-  constructor(private route: ActivatedRoute) {
-    const { type, number } = this.route.snapshot.params;
-    this.transport = routeList.find(
-      (item) => item.type === type && String(item.number) === number,
-    );
+  constructor(
+    private route: ActivatedRoute,
+    private apiStatic: ApiStaticService,
+  ) {}
+
+  ngOnInit() {
+    this.route.params.subscribe((params) => {
+      const { id } = params;
+      this.id = id;
+    });
+
+    this.apiStatic.json$.subscribe((json: any) => {
+      if (!json) return;
+
+      const shapes = json.shapes[this.id];
+      this.stops = shapes
+        .map((shape: number[]) => shape.join('_'))
+        .filter((shape: string) => {
+          return json.stops[shape];
+        })
+        .map((shape: string) => json.stops[shape].name.replaceAll('"', ''));
+    });
   }
 }

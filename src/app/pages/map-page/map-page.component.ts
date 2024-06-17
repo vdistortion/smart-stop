@@ -4,6 +4,8 @@ import { SearchComponent } from '../../components/search/search.component';
 import { TabsComponent } from '../../components/tabs/tabs.component';
 import { MapComponent } from '../../components/map/map.component';
 import { ApiYmapsService } from '../../services/api-ymaps.service';
+import { ApiStaticService } from '../../services/api-static.service';
+import { times } from '../../data/routes';
 
 @Component({
   selector: 'app-map-page',
@@ -12,9 +14,22 @@ import { ApiYmapsService } from '../../services/api-ymaps.service';
   templateUrl: './map-page.component.html',
 })
 export class MapPageComponent implements OnInit, OnDestroy {
-  constructor(private apiYmaps: ApiYmapsService) {}
+  public routes: any[] = [];
+
+  constructor(
+    private apiYmaps: ApiYmapsService,
+    private apiStatic: ApiStaticService,
+  ) {}
 
   ngOnInit(): void {
+    this.apiStatic.json$.subscribe((json: any) => {
+      if (!json) return;
+      this.routes = json.routes.map((route: any, key: number) => ({
+        ...route,
+        time: times[key] ?? 0,
+      }));
+    });
+
     this.apiYmaps.init();
   }
 

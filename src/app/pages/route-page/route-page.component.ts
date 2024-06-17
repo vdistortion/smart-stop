@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RouteHeaderComponent } from '../../components/route-header/route-header.component';
 import { MapComponent } from '../../components/map/map.component';
-import { routeList } from '../../data/routes';
 
 @Component({
   selector: 'app-route-page',
@@ -10,13 +9,15 @@ import { routeList } from '../../data/routes';
   imports: [RouteHeaderComponent, MapComponent],
   templateUrl: './route-page.component.html',
 })
-export class RoutePageComponent {
-  public transport;
+export class RoutePageComponent implements OnInit {
+  public id: string = '';
 
-  constructor(private route: ActivatedRoute) {
-    const { type, number } = this.route.snapshot.params;
-    this.transport = routeList.find(
-      (item) => item.type === type && String(item.number) === number,
-    );
+  constructor(private route: ActivatedRoute) {}
+
+  ngOnInit() {
+    this.route.params.subscribe((params) => {
+      const { id } = params;
+      this.id = id;
+    });
   }
 }

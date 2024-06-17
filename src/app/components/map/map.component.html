@@ -1,10 +1,9 @@
 <div class="l-map">
-  @if (isShow) {
-    <div
-      leaflet
-      [leafletOptions]="options"
-      [leafletLayers]="layers"
-      style="height: 750px"
-    ></div>
-  }
+  <div
+    leaflet
+    [leafletOptions]="options"
+    [leafletLayers]="layers"
+    (leafletMapReady)="initMap($event)"
+    style="height: 750px"
+  ></div>
 </div>
