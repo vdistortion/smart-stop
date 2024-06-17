@@ -1,8 +1,10 @@
 <div class="l-map">
-  <div
-    leaflet
-    [leafletOptions]="options"
-    [leafletLayers]="layers"
-    style="height: 750px"
-  ></div>
+  @if (isShow) {
+    <div
+      leaflet
+      [leafletOptions]="options"
+      [leafletLayers]="layers"
+      style="height: 750px"
+    ></div>
+  }
 </div>

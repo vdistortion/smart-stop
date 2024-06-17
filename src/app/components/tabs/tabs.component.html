@@ -1,20 +1,26 @@
-<div id="superlist" class="tabs">
-  <div class="l-wrapper">
-    <div class="tabs__buttons">
-      @for (tab of tabs; track index; let index = $index) {
-        <div
-          class="tabs__button"
-          [class.b-active]="index === active"
-          (click)="active = index"
-        >
-          около {{ tab[0] }} МИН
+@if (tabs.length) {
+  <div class="tabs">
+    <div class="l-wrapper">
+      <div class="tabs__buttons">
+        @for (tab of tabs; track index; let index = $index) {
+          <div
+            class="tabs__button"
+            [class.b-active]="index === active"
+            (click)="onClick(index)"
+          >
+            {{ tab.duration }}, {{ tab.distance }}
+          </div>
+        }
+      </div>
+      @if (tabs[active].list.length) {
+        <div class="tabs__detail">
+          <ul class="tabs__list">
+            @for (text of tabs[active].list; track text) {
+              <li class="tabs__item">{{ text }}</li>
+            }
+          </ul>
         </div>
       }
     </div>
-    <div class="tabs__detail">
-      <ul class="tabs__list">
-        <li class="tabs__item">{{ tabs[active][1] }}</li>
-      </ul>
-    </div>
   </div>
-</div>
+}
