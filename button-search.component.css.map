@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/components/button-search/button-search.component.scss"],
+  "sourcesContent": [".btn-search {\n  width: 100%;\n\n  &__button {\n    width: 100%;\n    height: 80px;\n    border-radius: 14px;\n    background-color: var(--color-blue2);\n    color: var(--c-white);\n    font-size: 40px;\n    font-weight: 400;\n  }\n}\n"],
+  "mappings": ";AAAA,CAAA;AACE,SAAA;;AAEA,CAAA;AACE,SAAA;AACA,UAAA;AACA,iBAAA;AACA,oBAAA,IAAA;AACA,SAAA,IAAA;AACA,aAAA;AACA,eAAA;;",
+  "names": []
+}

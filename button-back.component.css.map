@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/components/button-back/button-back.component.scss"],
+  "sourcesContent": [".btn-back {\n  &__button {\n    width: 46px;\n    height: 74px;\n    opacity: 0.25;\n    background-image: url('/svg/arrow.svg');\n    background-size: contain;\n  }\n}\n"],
+  "mappings": ";AACE,CAAA;AACE,SAAA;AACA,UAAA;AACA,WAAA;AACA,oBAAA;AACA,mBAAA;;",
+  "names": []
+}

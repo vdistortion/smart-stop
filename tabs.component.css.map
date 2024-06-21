@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/components/tabs/tabs.component.scss"],
+  "sourcesContent": [".tabs {\n  padding: 20px 0;\n  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.23);\n\n  &__button {\n    color: #084ac4;\n    font-size: 30px;\n    font-weight: 700;\n    border-bottom: 5px solid;\n    width: 100%;\n    max-width: 270px;\n    padding: 20px 0;\n    display: inline-block;\n    margin-right: 35px;\n    cursor: pointer;\n\n    &:not(.b-active) {\n      opacity: 0.5;\n    }\n  }\n\n  &__list {\n    padding: 20px 0;\n  }\n\n  &__item {\n    color: var(--c-black);\n    font-size: 30px;\n    font-weight: 500;\n    letter-spacing: 0.9px;\n    line-height: 45px;\n    padding: 20px 0;\n\n    &:not(:first-child) {\n      border-top: 3px solid rgba(var(--c-black), 0.25);\n    }\n  }\n}\n"],
+  "mappings": ";AAAA,CAAA;AACE,WAAA,KAAA;AACA,cAAA,EAAA,IAAA,IAAA,KAAA,CAAA,EAAA,CAAA,EAAA,CAAA,EAAA;;AAEA,CAAA;AACE,SAAA;AACA,aAAA;AACA,eAAA;AACA,iBAAA,IAAA;AACA,SAAA;AACA,aAAA;AACA,WAAA,KAAA;AACA,WAAA;AACA,gBAAA;AACA,UAAA;;AAEA,CAZF,YAYE,KAAA,CAAA;AACE,WAAA;;AAIJ,CAAA;AACE,WAAA,KAAA;;AAGF,CAAA;AACE,SAAA,IAAA;AACA,aAAA;AACA,eAAA;AACA,kBAAA;AACA,eAAA;AACA,WAAA,KAAA;;AAEA,CARF,UAQE,KAAA;AACE,cAAA,IAAA,MAAA,KAAA,IAAA,UAAA,EAAA;;",
+  "names": []
+}
