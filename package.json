@@ -9,7 +9,8 @@
     "test": "ng test",
     "format": "prettier . --write",
     "grep": "sh grep.sh",
-    "grid": "tsx grid.ts && npx sass-migrator division src/_grid.scss && prettier --write src/_grid.scss"
+    "grid": "tsx grid.ts && npx sass-migrator division src/_grid.scss && prettier --write src/_grid.scss",
+    "public": "npm run build --configuration development && gh-pages -d dist/smart-stop/browser -t --nojekyll"
   },
   "private": true,
   "dependencies": {
@@ -35,6 +36,7 @@
     "@angular/compiler-cli": "^18.0.0",
     "@types/jasmine": "~5.1.0",
     "@types/leaflet": "^1.9.12",
+    "gh-pages": "^6.1.1",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
