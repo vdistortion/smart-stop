@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'dev-debug',
@@ -7,4 +8,6 @@ import { Component } from '@angular/core';
   templateUrl: './debug.component.html',
   styleUrl: './debug.component.scss',
 })
-export class DebugComponent {}
+export class DebugComponent {
+  protected show: boolean = environment.DEBUG;
+}
