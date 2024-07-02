@@ -4,13 +4,13 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --base-href /smart-stop/ && cd dist/smart-stop/browser && cp index.html 404.html",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "format": "prettier . --write",
     "grep": "sh grep.sh",
     "grid": "tsx grid.ts && npx sass-migrator division src/_grid.scss && prettier --write src/_grid.scss",
-    "public": "npm run build --configuration development && gh-pages -d dist/smart-stop/browser -t --nojekyll"
+    "public": "npm run build && gh-pages -d dist/smart-stop/browser -t --nojekyll"
   },
   "private": true,
   "dependencies": {
