@@ -3,7 +3,7 @@
 .header {
   position: relative;
   z-index: 1;
-  box-shadow: 0 5px 10px rgba(var(--c-black), 0.4);
+  box-shadow: 0 5px 10px var(--c-black-shadow);
   background-color: var(--color-bedge1);
 
   &__wrapper {
