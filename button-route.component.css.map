@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/components/button-route/button-route.component.scss"],
-  "sourcesContent": [".btn-route {\n  width: 100%;\n  max-width: 240px;\n  height: 80px;\n  border-radius: 14px;\n  opacity: 0.85;\n  color: var(--c-white);\n  font-size: 45px;\n  font-weight: 400;\n  letter-spacing: 1.35px;\n  text-align: left;\n  padding-left: 90px;\n  background-repeat: no-repeat;\n  background-position: 20px center;\n\n  &--short {\n    max-width: 180px;\n    height: 60px;\n    font-size: 35px;\n    letter-spacing: 1.05px;\n    padding-left: 60px;\n    padding-right: 10px;\n    background-size: 30px;\n  }\n\n  &--bus {\n    background-color: var(--color-red1);\n    opacity: 0.7;\n    background-image: url('/svg/bus.svg');\n  }\n\n  &--trol {\n    background-color: var(--color-blue3);\n    opacity: 0.85;\n    background-image: url('/svg/trol.svg');\n  }\n}\n"],
-  "mappings": ";AAAA,CAAA;AACE,SAAA;AACA,aAAA;AACA,UAAA;AACA,iBAAA;AACA,WAAA;AACA,SAAA,IAAA;AACA,aAAA;AACA,eAAA;AACA,kBAAA;AACA,cAAA;AACA,gBAAA;AACA,qBAAA;AACA,uBAAA,KAAA;;AAEA,CAAA;AACE,aAAA;AACA,UAAA;AACA,aAAA;AACA,kBAAA;AACA,gBAAA;AACA,iBAAA;AACA,mBAAA;;AAGF,CAAA;AACE,oBAAA,IAAA;AACA,WAAA;AACA,oBAAA;;AAGF,CAAA;AACE,oBAAA,IAAA;AACA,WAAA;AACA,oBAAA;;",
-  "names": []
-}
