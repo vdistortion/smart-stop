@@ -62,7 +62,7 @@
   }
 
   &--tram &__number {
-    background-image: url('/svg/tram.svg');
+    background-image: url('./assets/svg/tram.svg');
     background-size: 35px auto;
 
     span {
@@ -71,7 +71,7 @@
   }
 
   &--trol &__number {
-    background-image: url('/svg/trol.svg');
+    background-image: url('./assets/svg/trol.svg');
 
     span {
       color: #012e82;
@@ -80,7 +80,7 @@
 
   &--bus &__number,
   &--seasonbus &__number {
-    background-image: url('/svg/bus.svg');
+    background-image: url('./assets/svg/bus.svg');
 
     span {
       color: #801d04;
@@ -88,7 +88,7 @@
   }
 
   &--taxi &__number {
-    background-image: url('/svg/taxi.svg');
+    background-image: url('./assets/svg/taxi.svg');
 
     span {
       color: #924e00;

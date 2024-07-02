@@ -45,7 +45,7 @@
     }
 
     &--route {
-      background-image: url('/svg/map.svg');
+      background-image: url('../../../assets/svg/map.svg');
       background-position: center 10px;
 
       &::after {
@@ -54,7 +54,7 @@
     }
 
     &--detail {
-      background-image: url('/svg/schedule.svg');
+      background-image: url('../../../assets/svg/schedule.svg');
       background-position: center 15px;
 
       &::after {
@@ -85,12 +85,14 @@
   }
 
   &--trol &__back {
-    background-image: url('/svg/arrow.svg'), url('/svg/trol.svg');
+    background-image: url('../../../assets/svg/arrow.svg'),
+      url('../../../assets/svg/trol.svg');
     background-color: var(--color-blue3);
   }
 
   &--bus &__back {
-    background-image: url('/svg/bus-back.svg'), url('/svg/bus.svg');
+    background-image: url('../../../assets/svg/bus-arrow.svg'),
+      url('../../../assets/svg/bus.svg');
     background-color: #fd8161;
   }
 

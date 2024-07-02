@@ -26,12 +26,12 @@
   &--bus {
     background-color: var(--color-red1);
     opacity: 0.7;
-    background-image: url('/svg/bus.svg');
+    background-image: url('../../../assets/svg/bus.svg');
   }
 
   &--trol {
     background-color: var(--color-blue3);
     opacity: 0.85;
-    background-image: url('/svg/trol.svg');
+    background-image: url('../../../assets/svg/trol.svg');
   }
 }
