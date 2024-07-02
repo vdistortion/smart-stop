@@ -1,9 +1,11 @@
-<div data-widget="pagination">
-  <ul>
-    @for (page of pages; track page.title) {
-      <li>
-        <a routerLink="{{ page.path }}">{{ page.title }}</a>
-      </li>
-    }
-  </ul>
-</div>
+@if (show) {
+  <div data-widget="pagination">
+    <ul>
+      @for (page of pages; track page.title) {
+        <li>
+          <a routerLink="{{ page.path }}">{{ page.title }}</a>
+        </li>
+      }
+    </ul>
+  </div>
+}

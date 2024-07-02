@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink, Routes } from '@angular/router';
 import { routes } from '../../app.routes';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-widget',
@@ -10,7 +11,9 @@ import { routes } from '../../app.routes';
   styleUrl: './widget.component.scss',
 })
 export class WidgetComponent {
-  public pages: Routes = routes
+  protected show: boolean = environment.DEBUG;
+
+  protected pages: Routes = routes
     .filter((route) => route.path !== '**')
     .map((route) => ({
       ...route,
